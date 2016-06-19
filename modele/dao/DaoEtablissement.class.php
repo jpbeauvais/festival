@@ -5,6 +5,7 @@ namespace modele\dao;
 use modele\metier\Etablissement;
 use modele\Connexion;
 use \PDO;
+use \PDOException;
 
 class DaoEtablissement implements Dao {
 
@@ -106,12 +107,14 @@ class DaoEtablissement implements Dao {
             $sql = "INSERT INTO Etablissement VALUES(:id, :nom, :adresseRue, :codePostal, :ville, :tel, :adresseElectronique, :type, :civiliteResponsable, :nomResponsable, :prenomResponsable, :nombreChambresOffertes)";
             // préparer la requête PDO
             $queryPrepare = Connexion::getPdo()->prepare($sql);
-            // exécuter la requête avec les valeurs des paramètres dans un tableau
+//             exécuter la requête avec les valeurs des paramètres dans un tableau
             if ($queryPrepare->execute(self::objetVersEnregistrement($objetMetier))) {
                 // si la requête réussit :
                 $retour = TRUE;
             }
         } catch (PDOException $e) {
+            echo get_class() . ' - ' . __METHOD__ . ' : ' . $e->getMessage();
+        } catch (Exception $e) {
             echo get_class() . ' - ' . __METHOD__ . ' : ' . $e->getMessage();
         }
         return $retour;

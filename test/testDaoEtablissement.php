@@ -64,6 +64,7 @@ require_once("../includes/fonctions.inc.php");
 
         // Etablissement : test de l'ajout d'un établissement non existant
         echo "<h3>Etablissement : test de l'ajout d'un enregistrement non existant</h3>";
+//        $unEtablissement = new Etablissement('004896AB', 'Collège des Minimes', '20 rue Blanci', '30000', 'Nîmes', '+334789356156', 'college-blanci@ac-nimes.fr', 1, 'Monsieur', 'Dufeuil', 'Bernard', 15);
         $unEtablissement = new Etablissement('004896AB', 'Collège des Minimes', '20 rue Blanci', '30000', 'Nîmes', '+334789356156', 'college-blanci@ac-nimes.fr', 1, 'Monsieur', 'Dufeuil', 'Bernard', 15);
 
         if (DaoEtablissement::insert($unEtablissement)) {
